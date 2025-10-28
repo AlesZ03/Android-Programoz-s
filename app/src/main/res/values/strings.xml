@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyApplication</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_fragment">LoginFragment</string>
+    <string name="register_fragment">RegisterFragment</string>
+    <string name="home_fragment">HomeFragment</string>
+    <string name="profile_fragment">ProfileFragment</string>
+    <string name="login">Login</string>
+</resources>
