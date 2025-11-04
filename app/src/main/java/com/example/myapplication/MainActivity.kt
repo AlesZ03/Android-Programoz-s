@@ -1,11 +1,11 @@
-package com.example.labor_1
+package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.example.labor_1.databinding.ActivityMainBinding
+import com.example.myapplication.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         // BottomNavigationView összekötése a NavController-rel
         binding.bottomNav.setupWithNavController(navController)
+
     }
 
     override fun onStart() {
