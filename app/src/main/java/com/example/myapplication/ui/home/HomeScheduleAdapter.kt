@@ -15,8 +15,8 @@ import com.example.myapplication.R
 
 
 class HomeScheduleAdapter :
-    ListAdapter<ScheduleResponse, HomeScheduleAdapter.ViewHolder>
-        (DiffCallback()) {
+ListAdapter<ScheduleResponse, HomeScheduleAdapter.ViewHolder>
+(DiffCallback()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             ViewHolder {
         val binding = ItemHomeScheduleBinding.inflate(
@@ -26,37 +26,28 @@ class HomeScheduleAdapter :
         )
         return ViewHolder(binding)
     }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(item)
     }
-
     class ViewHolder(private val binding: ItemHomeScheduleBinding) :
-        RecyclerView.ViewHolder(binding.root)
+        RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: ScheduleResponse) {
-        binding.tvTitle.text = item.habit?.name ?: "Unknown Habit"
-        // Format time
-        // Set notes visibility
-        // set icon based on category
+        fun bind(item: ScheduleResponse) {
+            binding.tvTitle.text = item.habit?.name ?: "Unknown Habit"
+            // Format time
+            // Set notes visibility
+            // set icon based on category
+        }
     }
-
     class DiffCallback : DiffUtil.ItemCallback<ScheduleResponse>() {
-        override fun areItemsTheSame(
-            oldItem: ScheduleResponse, newItem:
-            ScheduleResponse
-        ): Boolean {
+        override fun areItemsTheSame(oldItem: ScheduleResponse, newItem:
+        ScheduleResponse): Boolean {
             return oldItem.id == newItem.id
         }
-
-        override fun areContentsTheSame(
-            oldItem: ScheduleResponse,
-            newItem: ScheduleResponse
-        ): Boolean {
+        override fun areContentsTheSame(oldItem: ScheduleResponse,
+                                        newItem: ScheduleResponse): Boolean {
             return oldItem == newItem
         }
     }
 }
-
-

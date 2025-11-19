@@ -25,9 +25,11 @@ class HomeViewModel(private val repository: ScheduleRepository) :
             _isLoading.value = true
             try {
                 val response = repository.getScheduleByDay(day)
+                Log.d("HomeViewModel", "Fetched schedules for $day: $response")
                 _schedules.value = response
                 _errorMessage.value = null
             } catch (e: Exception) {
+                Log.e("HomeViewModel", "Error fetching schedules", e)
                 _errorMessage.value = e.message ?: "Failed to load schedules"
             } finally {
                 _isLoading.value = false
