@@ -1,31 +1,44 @@
 package com.example.myapplication.model
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDateTime
 
 data class ScheduleResponse(
-    val id: Long,
-    @SerializedName("start_time")
-    val startTime: String? = null,
-    @SerializedName("end_time")
-    val endTime: String? = null,
-    val status: String? = null,
-    val date: String? = null,
-    @SerializedName("is_custom")
-    val isCustom: Boolean,
-    @SerializedName("created_at")
-    val createdAt: String? = null,
-    @SerializedName("updated_at")
-    val updatedAt: String? = null,
-    val type: String? = null,
-    @SerializedName("duration_minutes")
-    val durationMinutes: Int? = null,
-    val notes: String? = null,
-    val participants: List<ParticipantDto>? = emptyList(),
-    val habit: HabitResponse? = null,
-    val progress: List<ProgressResponseDto>? = emptyList(),
-    val isParticipantOnly: Boolean,
-)
+
+        val id: Long,
+
+        @SerializedName("start_time")
+        val start_time: String? = null,
+
+        @SerializedName("end_time")
+        val end_time: String? = null,
+
+        val status: String? = null,
+        val date: String? = null,
+
+        @SerializedName("is_custom")
+        val is_custom: Boolean,
+
+        @SerializedName("created_at")
+        val createdAt: String? = null,
+
+        @SerializedName("updated_at")
+        val updatedAt: String? = null,
+
+        val type: String? = null,
+
+        @SerializedName("duration_minutes")
+        val duration_minutes: Int? = null,
+
+        val notes: String? = null,
+        val participantIds: List<ParticipantDto>? = emptyList(),
+        val habit: HabitResponse? = null,
+        val progress: List<ProgressResponseDto>? = emptyList(),
+
+        // HOZZÁADVA: Ez az annotáció hiányzott
+        @SerializedName("is_participant_only")
+        val isParticipantOnly: Boolean,
+        )
+
 
 data class HabitResponse(
     val id: Long,
@@ -64,4 +77,15 @@ data class AddHabitRequest(
     val description: String,
     val categoryId: Long,
     val goal: String
+)
+
+data class ScheduleRequest(
+    val habitId: Long,
+    val date: String,
+    val start_time: String,
+    val end_time: String,
+    val duration_minutes: Int,
+    val is_custom: Boolean,
+    val participantIds: List<Long>,
+    val notes: String
 )

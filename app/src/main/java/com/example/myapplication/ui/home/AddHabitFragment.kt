@@ -12,56 +12,30 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.myapplication.R
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class AddHabitFragment : Fragment() {
-
-    private lateinit var viewModel: AddHabitViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_add_habit, container, false)
+    ): View {
+        return inflater.inflate(R.layout.fragment_add, container, false)
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Létrehozod a factory-t, ami átadja a repository-t a ViewModelnek
-        val factory = AddHabitViewModelFactory(requireContext())
-        viewModel = ViewModelProvider(this, factory)[AddHabitViewModel::class.java]
+        val tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
+        val viewPager = view.findViewById<ViewPager2>(R.id.viewPager)
 
-        val name = view.findViewById<EditText>(R.id.etHabitName)
-        val desc = view.findViewById<EditText>(R.id.etHabitDescription)
-        val goal = view.findViewById<EditText>(R.id.etHabitGoal)
-        val categoryId = view.findViewById<EditText>(R.id.etHabitCategoryId)
-        val btn = view.findViewById<Button>(R.id.btnSaveHabit)
+        viewPager.adapter = HabitSchedulePagerAdapter(this)
 
-        btn.setOnClickListener {
-            viewModel.addHabit(
-                name.text.toString(),
-                desc.text.toString(),
-                categoryId.text.toString().toLong(),
-                goal.text.toString()
-            )
-        }
-
-        observeViewModel()
-    }
-
-    private fun observeViewModel() {
-        viewModel.success.observe(viewLifecycleOwner) {
-            if (it == true) {
-                Toast.makeText(requireContext(), "Habit created!", Toast.LENGTH_SHORT).show()
-                findNavController().navigateUp()
-            }
-        }
-
-        viewModel.error.observe(viewLifecycleOwner) {
-            if (it != null)
-                Toast.makeText(requireContext(), "Error: $it", Toast.LENGTH_LONG).show()
-        }
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            tab.text = if (position == 0) "Habit" else "Schedule"
+        }.attach()
     }
 }

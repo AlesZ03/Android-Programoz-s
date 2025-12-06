@@ -7,11 +7,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.model.AddHabitRequest
+import com.example.myapplication.repository.HabitRepository
 import com.example.myapplication.repository.ScheduleRepository
 import kotlinx.coroutines.launch
 
 class AddHabitViewModel(
-    private val repository: ScheduleRepository
+    private val repository: HabitRepository
 ) : ViewModel() {
 
     private val _success = MutableLiveData<Boolean>()

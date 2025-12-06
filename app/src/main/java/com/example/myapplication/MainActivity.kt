@@ -2,6 +2,7 @@ package com.example.myapplication
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View // Importáld a View-t
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -24,6 +25,24 @@ class MainActivity : AppCompatActivity() {
 
         // BottomNavigationView összekötése a NavController-rel
         binding.bottomNav.setupWithNavController(navController)
+
+
+
+        // Listener hozzáadása a navigációs célpontok figyelésére
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            // Itt add meg azokat a fragment ID-kat, ahol a menünek látszódnia kell.
+            // Ezeket az ID-kat a res/navigation/nav_graph.xml fájlban találod.
+            when (destination.id) {
+                R.id.homeFragment,
+                R.id.profileFragment -> {
+                    binding.bottomNav.visibility = View.VISIBLE
+                }
+                // Minden más esetben (pl. a LoginFragment-nél) a menü rejtett lesz.
+                else -> {
+                    binding.bottomNav.visibility = View.GONE
+                }
+            }
+        }
 
     }
 

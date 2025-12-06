@@ -75,8 +75,8 @@ class HomeFragment : Fragment() {
         binding.btnAddHabit.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addHabitFragment)
         }
-        val today = try { LocalDate.now().toString() } catch (_: Exception) { "2025-10-26" }
-        viewModel.getScheduleByDay("2025-11-17")
+        val today = try { LocalDate.now().toString() } catch (_: Exception) { "2025-12-03" }
+        viewModel.getScheduleByDay("2025-11-26")
     }
     private fun setupObservers() {
         viewModel.schedules.observe(viewLifecycleOwner) { schedules ->

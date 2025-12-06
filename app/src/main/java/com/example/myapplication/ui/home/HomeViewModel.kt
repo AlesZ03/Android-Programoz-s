@@ -7,9 +7,6 @@ import androidx.annotation.RequiresApi
 import com.example.myapplication.repository.ScheduleRepository
 import com.example.myapplication.model.ScheduleResponse
 import kotlinx.coroutines.launch
-/**
- * ViewModel that manages schedule-related data for the ScheduleFragment.
- */
 
 class HomeViewModel(private val repository: ScheduleRepository) :
     ViewModel() {

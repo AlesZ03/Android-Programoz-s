@@ -5,6 +5,7 @@ import com.example.myapplication.model.AddHabitRequest
 import com.example.myapplication.model.AuthRequest
 import com.example.myapplication.model.AuthResponse
 import com.example.myapplication.model.HabitResponse
+import com.example.myapplication.model.ScheduleRequest
 import com.example.myapplication.model.ScheduleResponse
 
 import retrofit2.Response
@@ -21,7 +22,8 @@ interface AuthApiService {
     suspend fun signup(@Body request: AuthRequest): Response<AuthResponse>
     @GET("/schedule/day")
     suspend fun getScheduleByDay(@Query("date") day: String):List<ScheduleResponse>
-    @POST("habit")
+    @POST("/habit")
     suspend fun addHabit(@Body request: AddHabitRequest): HabitResponse
-
+    @POST("schedule/custom")
+    suspend fun addSchedule(@Body schedule: ScheduleRequest): Response<Unit>
 }
