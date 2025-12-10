@@ -17,6 +17,9 @@ public class ScheduleRepository(context: Context) {
     }
     suspend fun addSchedule(request: ScheduleRequest) {
         api.addSchedule(request)
+    }
 
+    suspend fun deleteSchedule(scheduleId: Long) {
+        api.deleteSchedule(scheduleId)
     }
 }

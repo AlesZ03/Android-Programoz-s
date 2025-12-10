@@ -3,7 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/homeFragment">
+
+
+    <action
+        android:id="@+id/action_global_to_loginFragment"
+        app:destination="@id/loginFragment"
+        app:popUpTo="@id/nav_graph"
+        app:popUpToInclusive="true" />
 
     <fragment
         android:id="@+id/loginFragment"
@@ -12,7 +19,9 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" /> <!-- Ez a beállítás helyes, törli a vissza-stack-et bejelentkezés után -->
     </fragment>
 
     <fragment
@@ -26,6 +35,7 @@
         android:name="com.example.myapplication.ui.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
+
         <action
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -36,13 +46,15 @@
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.myapplication.ui.profile.ProfileFragment"
-        android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile">
-        <action
-            android:id="@+id/action_profileFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
+
+    android:name="com.example.myapplication.ui.profile.ProfileFragment"
+    android:label="fragment_profile"
+    tools:layout="@layout/fragment_profile">
+    <action
+        android:id="@+id/action_profileFragment_to_homeFragment"
+        app:destination="@id/homeFragment" />
+</fragment>
+
     <fragment
         android:id="@+id/addHabitFragment"
         android:name="com.example.myapplication.ui.home.AddHabitFragment"

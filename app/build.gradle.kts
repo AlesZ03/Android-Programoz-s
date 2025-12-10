@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -62,6 +63,7 @@ dependencies {
 
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.tracing.perfetto.handshake)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

@@ -85,6 +85,10 @@ class ScheduleFormFragment : Fragment() {
                 notes = binding.etNotes.text.toString()
             )
         }
+
+        binding.btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     private fun showDatePicker() {

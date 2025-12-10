@@ -28,6 +28,7 @@ class HabitFormFragment : Fragment(R.layout.fragment_add_habit) {
         val categoryId = view.findViewById<EditText>(R.id.etHabitCategoryId)
 
         val btn = view.findViewById<Button>(R.id.btnSaveHabit)
+        val backBtn = view.findViewById<Button>(R.id.btnBack)
 
         btn.setOnClickListener {
             viewModel.addHabit(
@@ -36,6 +37,10 @@ class HabitFormFragment : Fragment(R.layout.fragment_add_habit) {
                 categoryId.text.toString().toLong(),
                 goal.text.toString()
             )
+        }
+
+        backBtn.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
 
         observeViewModel()

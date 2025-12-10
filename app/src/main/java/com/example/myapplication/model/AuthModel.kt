@@ -1,5 +1,7 @@
 package com.example.myapplication.model
 
+import com.google.gson.annotations.SerializedName
+
 data class User(
     val id: String,
     val email: String,
@@ -17,4 +19,13 @@ data class Tokens(
 data class AuthResponse(
     val tokens: Tokens,
     val user: User
+)
+
+data class ProfileResponse(
+    val id: Int,
+    val email: String,
+    val username: String,
+    val description: String?,
+    @SerializedName("profileImageBase64") // A Base64 stringet tartalmazó mező
+    val profileImageBase64: String?
 )
